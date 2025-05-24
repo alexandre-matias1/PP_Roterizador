@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres: 
+    container_name: roterizador_v3
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: roterizador
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: roterizador
