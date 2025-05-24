@@ -1,27 +1,18 @@
 "use client";
 import { useMaps } from "@/hooks/maps";
-import { api } from "@/lib/axios";
 import Script from "next/script";
-import { useEffect, useState } from "react";
-
-interface RoutePoint {
-  lat: number;
-  lng: number;
-  id: number;
-}
-
-interface CarRoute {
-  car: number;
-  color: string;
-  routes: RoutePoint[];
-}
+import { useContext, useEffect, useState } from "react";
+import { RoutesContext } from "../context/data-context";
+//Popover
 
 export function Map() {
-  const [routes, setRoutes] = useState<CarRoute[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    fetchData,
+    routesData: routes,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    setRoutes,
+  } = useContext(RoutesContext);
   const [loadMaps, setLoadMaps] = useState(false);
-
   const { map, mapRef } = useMaps({
     center: {
       lat: -19.959282,
@@ -30,28 +21,15 @@ export function Map() {
     zoom: 10,
   });
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("api/cars");
-        setRoutes(response.data);
-        setError(null);
-      } catch (error) {
-        console.error(`Error: ${error}`);
-        setError("Failed to fetch routes data");
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchData();
-  }, []);
-
+  }, [fetchData]);
+  
   useEffect(() => {
     if (routes.length === 0 || !loadMaps || !map || !window.google.maps) {
       return;
     }
-
-    console.log(routes);
-    for (let i = 0; i <= routes.length - 1; i++) {
+    console.log(routes[0])
+    for (let i = 0; i <= 0; i++) {
       const plotingMapFunc = () => {
         const directionsService = new window.google.maps.DirectionsService();
         const directionRenderer = new window.google.maps.DirectionsRenderer({
@@ -61,7 +39,7 @@ export function Map() {
             strokeWeight: 4,
           },
         });
-
+        
         directionRenderer.setMap(map);
 
         directionsService.route(
@@ -77,27 +55,17 @@ export function Map() {
           (result, status) => {
             if (status === google.maps.DirectionsStatus.OK && result) {
               directionRenderer.setDirections(result);
+
+
             } else {
-              console.error("Erro ao buscar rota:", status);
+              console.error("zero resultados")
             }
           }
         );
-        // return () => {
-        //   directionRenderer.setMap(null);
-        //   console.log('Limpo')
-        // };
       };
       plotingMapFunc();
     }
   }, [routes, map, loadMaps]);
-
-  if (loading) {
-    return <div>Loading routes data...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
   return (
     <>

@@ -23,6 +23,11 @@ export type Routes = $Result.DefaultSelection<Prisma.$RoutesPayload>
  * 
  */
 export type Users = $Result.DefaultSelection<Prisma.$UsersPayload>
+/**
+ * Model RoutesChange
+ * 
+ */
+export type RoutesChange = $Result.DefaultSelection<Prisma.$RoutesChangePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -168,6 +173,16 @@ export class PrismaClient<
     * ```
     */
   get users(): Prisma.UsersDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.routesChange`: Exposes CRUD operations for the **RoutesChange** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RoutesChanges
+    * const routesChanges = await prisma.routesChange.findMany()
+    * ```
+    */
+  get routesChange(): Prisma.RoutesChangeDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -609,7 +624,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Routes: 'Routes',
-    Users: 'Users'
+    Users: 'Users',
+    RoutesChange: 'RoutesChange'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -628,7 +644,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "routes" | "users"
+      modelProps: "routes" | "users" | "routesChange"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -780,6 +796,80 @@ export namespace Prisma {
           }
         }
       }
+      RoutesChange: {
+        payload: Prisma.$RoutesChangePayload<ExtArgs>
+        fields: Prisma.RoutesChangeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RoutesChangeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RoutesChangeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>
+          }
+          findFirst: {
+            args: Prisma.RoutesChangeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RoutesChangeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>
+          }
+          findMany: {
+            args: Prisma.RoutesChangeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>[]
+          }
+          create: {
+            args: Prisma.RoutesChangeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>
+          }
+          createMany: {
+            args: Prisma.RoutesChangeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RoutesChangeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>[]
+          }
+          delete: {
+            args: Prisma.RoutesChangeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>
+          }
+          update: {
+            args: Prisma.RoutesChangeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>
+          }
+          deleteMany: {
+            args: Prisma.RoutesChangeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RoutesChangeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RoutesChangeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>[]
+          }
+          upsert: {
+            args: Prisma.RoutesChangeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutesChangePayload>
+          }
+          aggregate: {
+            args: Prisma.RoutesChangeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRoutesChange>
+          }
+          groupBy: {
+            args: Prisma.RoutesChangeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RoutesChangeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RoutesChangeCountArgs<ExtArgs>
+            result: $Utils.Optional<RoutesChangeCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -866,6 +956,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     routes?: RoutesOmit
     users?: UsersOmit
+    routesChange?: RoutesChangeOmit
   }
 
   /* Types for Logging */
@@ -973,33 +1064,37 @@ export namespace Prisma {
   }
 
   export type RoutesAvgAggregateOutputType = {
+    id: number | null
     LAT: number | null
     LNG: number | null
   }
 
   export type RoutesSumAggregateOutputType = {
+    id: number | null
     LAT: number | null
     LNG: number | null
   }
 
   export type RoutesMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     VEICULO: string | null
     FILDOC: string | null
     DOC: string | null
     SERIE: string | null
     LAT: number | null
     LNG: number | null
+    ENDERECO: string | null
   }
 
   export type RoutesMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     VEICULO: string | null
     FILDOC: string | null
     DOC: string | null
     SERIE: string | null
     LAT: number | null
     LNG: number | null
+    ENDERECO: string | null
   }
 
   export type RoutesCountAggregateOutputType = {
@@ -1010,16 +1105,19 @@ export namespace Prisma {
     SERIE: number
     LAT: number
     LNG: number
+    ENDERECO: number
     _all: number
   }
 
 
   export type RoutesAvgAggregateInputType = {
+    id?: true
     LAT?: true
     LNG?: true
   }
 
   export type RoutesSumAggregateInputType = {
+    id?: true
     LAT?: true
     LNG?: true
   }
@@ -1032,6 +1130,7 @@ export namespace Prisma {
     SERIE?: true
     LAT?: true
     LNG?: true
+    ENDERECO?: true
   }
 
   export type RoutesMaxAggregateInputType = {
@@ -1042,6 +1141,7 @@ export namespace Prisma {
     SERIE?: true
     LAT?: true
     LNG?: true
+    ENDERECO?: true
   }
 
   export type RoutesCountAggregateInputType = {
@@ -1052,6 +1152,7 @@ export namespace Prisma {
     SERIE?: true
     LAT?: true
     LNG?: true
+    ENDERECO?: true
     _all?: true
   }
 
@@ -1142,13 +1243,14 @@ export namespace Prisma {
   }
 
   export type RoutesGroupByOutputType = {
-    id: string
+    id: number
     VEICULO: string
     FILDOC: string
     DOC: string
     SERIE: string
     LAT: number
     LNG: number
+    ENDERECO: string
     _count: RoutesCountAggregateOutputType | null
     _avg: RoutesAvgAggregateOutputType | null
     _sum: RoutesSumAggregateOutputType | null
@@ -1178,6 +1280,7 @@ export namespace Prisma {
     SERIE?: boolean
     LAT?: boolean
     LNG?: boolean
+    ENDERECO?: boolean
   }, ExtArgs["result"]["routes"]>
 
   export type RoutesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1188,6 +1291,7 @@ export namespace Prisma {
     SERIE?: boolean
     LAT?: boolean
     LNG?: boolean
+    ENDERECO?: boolean
   }, ExtArgs["result"]["routes"]>
 
   export type RoutesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1198,6 +1302,7 @@ export namespace Prisma {
     SERIE?: boolean
     LAT?: boolean
     LNG?: boolean
+    ENDERECO?: boolean
   }, ExtArgs["result"]["routes"]>
 
   export type RoutesSelectScalar = {
@@ -1208,21 +1313,23 @@ export namespace Prisma {
     SERIE?: boolean
     LAT?: boolean
     LNG?: boolean
+    ENDERECO?: boolean
   }
 
-  export type RoutesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "VEICULO" | "FILDOC" | "DOC" | "SERIE" | "LAT" | "LNG", ExtArgs["result"]["routes"]>
+  export type RoutesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "VEICULO" | "FILDOC" | "DOC" | "SERIE" | "LAT" | "LNG" | "ENDERECO", ExtArgs["result"]["routes"]>
 
   export type $RoutesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Routes"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       VEICULO: string
       FILDOC: string
       DOC: string
       SERIE: string
       LAT: number
       LNG: number
+      ENDERECO: string
     }, ExtArgs["result"]["routes"]>
     composites: {}
   }
@@ -1646,13 +1753,14 @@ export namespace Prisma {
    * Fields of the Routes model
    */
   interface RoutesFieldRefs {
-    readonly id: FieldRef<"Routes", 'String'>
+    readonly id: FieldRef<"Routes", 'Int'>
     readonly VEICULO: FieldRef<"Routes", 'String'>
     readonly FILDOC: FieldRef<"Routes", 'String'>
     readonly DOC: FieldRef<"Routes", 'String'>
     readonly SERIE: FieldRef<"Routes", 'String'>
     readonly LAT: FieldRef<"Routes", 'Float'>
     readonly LNG: FieldRef<"Routes", 'Float'>
+    readonly ENDERECO: FieldRef<"Routes", 'String'>
   }
     
 
@@ -2032,17 +2140,19 @@ export namespace Prisma {
   }
 
   export type UsersAvgAggregateOutputType = {
+    id: number | null
     latFilial: number | null
     lngFilial: number | null
   }
 
   export type UsersSumAggregateOutputType = {
+    id: number | null
     latFilial: number | null
     lngFilial: number | null
   }
 
   export type UsersMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     name: string | null
     filial: string | null
     latFilial: number | null
@@ -2050,7 +2160,7 @@ export namespace Prisma {
   }
 
   export type UsersMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     name: string | null
     filial: string | null
     latFilial: number | null
@@ -2068,11 +2178,13 @@ export namespace Prisma {
 
 
   export type UsersAvgAggregateInputType = {
+    id?: true
     latFilial?: true
     lngFilial?: true
   }
 
   export type UsersSumAggregateInputType = {
+    id?: true
     latFilial?: true
     lngFilial?: true
   }
@@ -2189,7 +2301,7 @@ export namespace Prisma {
   }
 
   export type UsersGroupByOutputType = {
-    id: string
+    id: number
     name: string
     filial: string
     latFilial: number
@@ -2253,7 +2365,7 @@ export namespace Prisma {
     name: "Users"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       name: string
       filial: string
       latFilial: number
@@ -2681,7 +2793,7 @@ export namespace Prisma {
    * Fields of the Users model
    */
   interface UsersFieldRefs {
-    readonly id: FieldRef<"Users", 'String'>
+    readonly id: FieldRef<"Users", 'Int'>
     readonly name: FieldRef<"Users", 'String'>
     readonly filial: FieldRef<"Users", 'String'>
     readonly latFilial: FieldRef<"Users", 'Float'>
@@ -3053,6 +3165,1052 @@ export namespace Prisma {
 
 
   /**
+   * Model RoutesChange
+   */
+
+  export type AggregateRoutesChange = {
+    _count: RoutesChangeCountAggregateOutputType | null
+    _avg: RoutesChangeAvgAggregateOutputType | null
+    _sum: RoutesChangeSumAggregateOutputType | null
+    _min: RoutesChangeMinAggregateOutputType | null
+    _max: RoutesChangeMaxAggregateOutputType | null
+  }
+
+  export type RoutesChangeAvgAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+  }
+
+  export type RoutesChangeSumAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+  }
+
+  export type RoutesChangeMinAggregateOutputType = {
+    id: number | null
+    wasRoute: string | null
+    toRoute: string | null
+    route_id: string | null
+    user_id: number | null
+    createdAt: Date | null
+  }
+
+  export type RoutesChangeMaxAggregateOutputType = {
+    id: number | null
+    wasRoute: string | null
+    toRoute: string | null
+    route_id: string | null
+    user_id: number | null
+    createdAt: Date | null
+  }
+
+  export type RoutesChangeCountAggregateOutputType = {
+    id: number
+    wasRoute: number
+    toRoute: number
+    route_id: number
+    user_id: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RoutesChangeAvgAggregateInputType = {
+    id?: true
+    user_id?: true
+  }
+
+  export type RoutesChangeSumAggregateInputType = {
+    id?: true
+    user_id?: true
+  }
+
+  export type RoutesChangeMinAggregateInputType = {
+    id?: true
+    wasRoute?: true
+    toRoute?: true
+    route_id?: true
+    user_id?: true
+    createdAt?: true
+  }
+
+  export type RoutesChangeMaxAggregateInputType = {
+    id?: true
+    wasRoute?: true
+    toRoute?: true
+    route_id?: true
+    user_id?: true
+    createdAt?: true
+  }
+
+  export type RoutesChangeCountAggregateInputType = {
+    id?: true
+    wasRoute?: true
+    toRoute?: true
+    route_id?: true
+    user_id?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RoutesChangeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoutesChange to aggregate.
+     */
+    where?: RoutesChangeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoutesChanges to fetch.
+     */
+    orderBy?: RoutesChangeOrderByWithRelationInput | RoutesChangeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RoutesChangeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoutesChanges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoutesChanges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RoutesChanges
+    **/
+    _count?: true | RoutesChangeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RoutesChangeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RoutesChangeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RoutesChangeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RoutesChangeMaxAggregateInputType
+  }
+
+  export type GetRoutesChangeAggregateType<T extends RoutesChangeAggregateArgs> = {
+        [P in keyof T & keyof AggregateRoutesChange]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRoutesChange[P]>
+      : GetScalarType<T[P], AggregateRoutesChange[P]>
+  }
+
+
+
+
+  export type RoutesChangeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoutesChangeWhereInput
+    orderBy?: RoutesChangeOrderByWithAggregationInput | RoutesChangeOrderByWithAggregationInput[]
+    by: RoutesChangeScalarFieldEnum[] | RoutesChangeScalarFieldEnum
+    having?: RoutesChangeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RoutesChangeCountAggregateInputType | true
+    _avg?: RoutesChangeAvgAggregateInputType
+    _sum?: RoutesChangeSumAggregateInputType
+    _min?: RoutesChangeMinAggregateInputType
+    _max?: RoutesChangeMaxAggregateInputType
+  }
+
+  export type RoutesChangeGroupByOutputType = {
+    id: number
+    wasRoute: string
+    toRoute: string
+    route_id: string
+    user_id: number
+    createdAt: Date
+    _count: RoutesChangeCountAggregateOutputType | null
+    _avg: RoutesChangeAvgAggregateOutputType | null
+    _sum: RoutesChangeSumAggregateOutputType | null
+    _min: RoutesChangeMinAggregateOutputType | null
+    _max: RoutesChangeMaxAggregateOutputType | null
+  }
+
+  type GetRoutesChangeGroupByPayload<T extends RoutesChangeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RoutesChangeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RoutesChangeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RoutesChangeGroupByOutputType[P]>
+            : GetScalarType<T[P], RoutesChangeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RoutesChangeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    wasRoute?: boolean
+    toRoute?: boolean
+    route_id?: boolean
+    user_id?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["routesChange"]>
+
+  export type RoutesChangeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    wasRoute?: boolean
+    toRoute?: boolean
+    route_id?: boolean
+    user_id?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["routesChange"]>
+
+  export type RoutesChangeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    wasRoute?: boolean
+    toRoute?: boolean
+    route_id?: boolean
+    user_id?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["routesChange"]>
+
+  export type RoutesChangeSelectScalar = {
+    id?: boolean
+    wasRoute?: boolean
+    toRoute?: boolean
+    route_id?: boolean
+    user_id?: boolean
+    createdAt?: boolean
+  }
+
+  export type RoutesChangeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "wasRoute" | "toRoute" | "route_id" | "user_id" | "createdAt", ExtArgs["result"]["routesChange"]>
+
+  export type $RoutesChangePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RoutesChange"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      wasRoute: string
+      toRoute: string
+      route_id: string
+      user_id: number
+      createdAt: Date
+    }, ExtArgs["result"]["routesChange"]>
+    composites: {}
+  }
+
+  type RoutesChangeGetPayload<S extends boolean | null | undefined | RoutesChangeDefaultArgs> = $Result.GetResult<Prisma.$RoutesChangePayload, S>
+
+  type RoutesChangeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RoutesChangeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RoutesChangeCountAggregateInputType | true
+    }
+
+  export interface RoutesChangeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RoutesChange'], meta: { name: 'RoutesChange' } }
+    /**
+     * Find zero or one RoutesChange that matches the filter.
+     * @param {RoutesChangeFindUniqueArgs} args - Arguments to find a RoutesChange
+     * @example
+     * // Get one RoutesChange
+     * const routesChange = await prisma.routesChange.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RoutesChangeFindUniqueArgs>(args: SelectSubset<T, RoutesChangeFindUniqueArgs<ExtArgs>>): Prisma__RoutesChangeClient<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RoutesChange that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RoutesChangeFindUniqueOrThrowArgs} args - Arguments to find a RoutesChange
+     * @example
+     * // Get one RoutesChange
+     * const routesChange = await prisma.routesChange.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RoutesChangeFindUniqueOrThrowArgs>(args: SelectSubset<T, RoutesChangeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoutesChangeClient<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RoutesChange that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutesChangeFindFirstArgs} args - Arguments to find a RoutesChange
+     * @example
+     * // Get one RoutesChange
+     * const routesChange = await prisma.routesChange.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RoutesChangeFindFirstArgs>(args?: SelectSubset<T, RoutesChangeFindFirstArgs<ExtArgs>>): Prisma__RoutesChangeClient<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RoutesChange that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutesChangeFindFirstOrThrowArgs} args - Arguments to find a RoutesChange
+     * @example
+     * // Get one RoutesChange
+     * const routesChange = await prisma.routesChange.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RoutesChangeFindFirstOrThrowArgs>(args?: SelectSubset<T, RoutesChangeFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoutesChangeClient<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RoutesChanges that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutesChangeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RoutesChanges
+     * const routesChanges = await prisma.routesChange.findMany()
+     * 
+     * // Get first 10 RoutesChanges
+     * const routesChanges = await prisma.routesChange.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const routesChangeWithIdOnly = await prisma.routesChange.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RoutesChangeFindManyArgs>(args?: SelectSubset<T, RoutesChangeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RoutesChange.
+     * @param {RoutesChangeCreateArgs} args - Arguments to create a RoutesChange.
+     * @example
+     * // Create one RoutesChange
+     * const RoutesChange = await prisma.routesChange.create({
+     *   data: {
+     *     // ... data to create a RoutesChange
+     *   }
+     * })
+     * 
+     */
+    create<T extends RoutesChangeCreateArgs>(args: SelectSubset<T, RoutesChangeCreateArgs<ExtArgs>>): Prisma__RoutesChangeClient<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RoutesChanges.
+     * @param {RoutesChangeCreateManyArgs} args - Arguments to create many RoutesChanges.
+     * @example
+     * // Create many RoutesChanges
+     * const routesChange = await prisma.routesChange.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RoutesChangeCreateManyArgs>(args?: SelectSubset<T, RoutesChangeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RoutesChanges and returns the data saved in the database.
+     * @param {RoutesChangeCreateManyAndReturnArgs} args - Arguments to create many RoutesChanges.
+     * @example
+     * // Create many RoutesChanges
+     * const routesChange = await prisma.routesChange.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RoutesChanges and only return the `id`
+     * const routesChangeWithIdOnly = await prisma.routesChange.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RoutesChangeCreateManyAndReturnArgs>(args?: SelectSubset<T, RoutesChangeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RoutesChange.
+     * @param {RoutesChangeDeleteArgs} args - Arguments to delete one RoutesChange.
+     * @example
+     * // Delete one RoutesChange
+     * const RoutesChange = await prisma.routesChange.delete({
+     *   where: {
+     *     // ... filter to delete one RoutesChange
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RoutesChangeDeleteArgs>(args: SelectSubset<T, RoutesChangeDeleteArgs<ExtArgs>>): Prisma__RoutesChangeClient<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RoutesChange.
+     * @param {RoutesChangeUpdateArgs} args - Arguments to update one RoutesChange.
+     * @example
+     * // Update one RoutesChange
+     * const routesChange = await prisma.routesChange.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RoutesChangeUpdateArgs>(args: SelectSubset<T, RoutesChangeUpdateArgs<ExtArgs>>): Prisma__RoutesChangeClient<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RoutesChanges.
+     * @param {RoutesChangeDeleteManyArgs} args - Arguments to filter RoutesChanges to delete.
+     * @example
+     * // Delete a few RoutesChanges
+     * const { count } = await prisma.routesChange.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RoutesChangeDeleteManyArgs>(args?: SelectSubset<T, RoutesChangeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoutesChanges.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutesChangeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RoutesChanges
+     * const routesChange = await prisma.routesChange.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RoutesChangeUpdateManyArgs>(args: SelectSubset<T, RoutesChangeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoutesChanges and returns the data updated in the database.
+     * @param {RoutesChangeUpdateManyAndReturnArgs} args - Arguments to update many RoutesChanges.
+     * @example
+     * // Update many RoutesChanges
+     * const routesChange = await prisma.routesChange.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RoutesChanges and only return the `id`
+     * const routesChangeWithIdOnly = await prisma.routesChange.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RoutesChangeUpdateManyAndReturnArgs>(args: SelectSubset<T, RoutesChangeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RoutesChange.
+     * @param {RoutesChangeUpsertArgs} args - Arguments to update or create a RoutesChange.
+     * @example
+     * // Update or create a RoutesChange
+     * const routesChange = await prisma.routesChange.upsert({
+     *   create: {
+     *     // ... data to create a RoutesChange
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RoutesChange we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RoutesChangeUpsertArgs>(args: SelectSubset<T, RoutesChangeUpsertArgs<ExtArgs>>): Prisma__RoutesChangeClient<$Result.GetResult<Prisma.$RoutesChangePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RoutesChanges.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutesChangeCountArgs} args - Arguments to filter RoutesChanges to count.
+     * @example
+     * // Count the number of RoutesChanges
+     * const count = await prisma.routesChange.count({
+     *   where: {
+     *     // ... the filter for the RoutesChanges we want to count
+     *   }
+     * })
+    **/
+    count<T extends RoutesChangeCountArgs>(
+      args?: Subset<T, RoutesChangeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RoutesChangeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RoutesChange.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutesChangeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RoutesChangeAggregateArgs>(args: Subset<T, RoutesChangeAggregateArgs>): Prisma.PrismaPromise<GetRoutesChangeAggregateType<T>>
+
+    /**
+     * Group by RoutesChange.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutesChangeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RoutesChangeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RoutesChangeGroupByArgs['orderBy'] }
+        : { orderBy?: RoutesChangeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RoutesChangeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoutesChangeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RoutesChange model
+   */
+  readonly fields: RoutesChangeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RoutesChange.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RoutesChangeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RoutesChange model
+   */
+  interface RoutesChangeFieldRefs {
+    readonly id: FieldRef<"RoutesChange", 'Int'>
+    readonly wasRoute: FieldRef<"RoutesChange", 'String'>
+    readonly toRoute: FieldRef<"RoutesChange", 'String'>
+    readonly route_id: FieldRef<"RoutesChange", 'String'>
+    readonly user_id: FieldRef<"RoutesChange", 'Int'>
+    readonly createdAt: FieldRef<"RoutesChange", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RoutesChange findUnique
+   */
+  export type RoutesChangeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * Filter, which RoutesChange to fetch.
+     */
+    where: RoutesChangeWhereUniqueInput
+  }
+
+  /**
+   * RoutesChange findUniqueOrThrow
+   */
+  export type RoutesChangeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * Filter, which RoutesChange to fetch.
+     */
+    where: RoutesChangeWhereUniqueInput
+  }
+
+  /**
+   * RoutesChange findFirst
+   */
+  export type RoutesChangeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * Filter, which RoutesChange to fetch.
+     */
+    where?: RoutesChangeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoutesChanges to fetch.
+     */
+    orderBy?: RoutesChangeOrderByWithRelationInput | RoutesChangeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoutesChanges.
+     */
+    cursor?: RoutesChangeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoutesChanges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoutesChanges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoutesChanges.
+     */
+    distinct?: RoutesChangeScalarFieldEnum | RoutesChangeScalarFieldEnum[]
+  }
+
+  /**
+   * RoutesChange findFirstOrThrow
+   */
+  export type RoutesChangeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * Filter, which RoutesChange to fetch.
+     */
+    where?: RoutesChangeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoutesChanges to fetch.
+     */
+    orderBy?: RoutesChangeOrderByWithRelationInput | RoutesChangeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoutesChanges.
+     */
+    cursor?: RoutesChangeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoutesChanges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoutesChanges.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoutesChanges.
+     */
+    distinct?: RoutesChangeScalarFieldEnum | RoutesChangeScalarFieldEnum[]
+  }
+
+  /**
+   * RoutesChange findMany
+   */
+  export type RoutesChangeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * Filter, which RoutesChanges to fetch.
+     */
+    where?: RoutesChangeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoutesChanges to fetch.
+     */
+    orderBy?: RoutesChangeOrderByWithRelationInput | RoutesChangeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RoutesChanges.
+     */
+    cursor?: RoutesChangeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoutesChanges from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoutesChanges.
+     */
+    skip?: number
+    distinct?: RoutesChangeScalarFieldEnum | RoutesChangeScalarFieldEnum[]
+  }
+
+  /**
+   * RoutesChange create
+   */
+  export type RoutesChangeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * The data needed to create a RoutesChange.
+     */
+    data: XOR<RoutesChangeCreateInput, RoutesChangeUncheckedCreateInput>
+  }
+
+  /**
+   * RoutesChange createMany
+   */
+  export type RoutesChangeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RoutesChanges.
+     */
+    data: RoutesChangeCreateManyInput | RoutesChangeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RoutesChange createManyAndReturn
+   */
+  export type RoutesChangeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * The data used to create many RoutesChanges.
+     */
+    data: RoutesChangeCreateManyInput | RoutesChangeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RoutesChange update
+   */
+  export type RoutesChangeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * The data needed to update a RoutesChange.
+     */
+    data: XOR<RoutesChangeUpdateInput, RoutesChangeUncheckedUpdateInput>
+    /**
+     * Choose, which RoutesChange to update.
+     */
+    where: RoutesChangeWhereUniqueInput
+  }
+
+  /**
+   * RoutesChange updateMany
+   */
+  export type RoutesChangeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RoutesChanges.
+     */
+    data: XOR<RoutesChangeUpdateManyMutationInput, RoutesChangeUncheckedUpdateManyInput>
+    /**
+     * Filter which RoutesChanges to update
+     */
+    where?: RoutesChangeWhereInput
+    /**
+     * Limit how many RoutesChanges to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoutesChange updateManyAndReturn
+   */
+  export type RoutesChangeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * The data used to update RoutesChanges.
+     */
+    data: XOR<RoutesChangeUpdateManyMutationInput, RoutesChangeUncheckedUpdateManyInput>
+    /**
+     * Filter which RoutesChanges to update
+     */
+    where?: RoutesChangeWhereInput
+    /**
+     * Limit how many RoutesChanges to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoutesChange upsert
+   */
+  export type RoutesChangeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * The filter to search for the RoutesChange to update in case it exists.
+     */
+    where: RoutesChangeWhereUniqueInput
+    /**
+     * In case the RoutesChange found by the `where` argument doesn't exist, create a new RoutesChange with this data.
+     */
+    create: XOR<RoutesChangeCreateInput, RoutesChangeUncheckedCreateInput>
+    /**
+     * In case the RoutesChange was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RoutesChangeUpdateInput, RoutesChangeUncheckedUpdateInput>
+  }
+
+  /**
+   * RoutesChange delete
+   */
+  export type RoutesChangeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+    /**
+     * Filter which RoutesChange to delete.
+     */
+    where: RoutesChangeWhereUniqueInput
+  }
+
+  /**
+   * RoutesChange deleteMany
+   */
+  export type RoutesChangeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoutesChanges to delete
+     */
+    where?: RoutesChangeWhereInput
+    /**
+     * Limit how many RoutesChanges to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoutesChange without action
+   */
+  export type RoutesChangeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutesChange
+     */
+    select?: RoutesChangeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutesChange
+     */
+    omit?: RoutesChangeOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3073,7 +4231,8 @@ export namespace Prisma {
     DOC: 'DOC',
     SERIE: 'SERIE',
     LAT: 'LAT',
-    LNG: 'LNG'
+    LNG: 'LNG',
+    ENDERECO: 'ENDERECO'
   };
 
   export type RoutesScalarFieldEnum = (typeof RoutesScalarFieldEnum)[keyof typeof RoutesScalarFieldEnum]
@@ -3088,6 +4247,18 @@ export namespace Prisma {
   };
 
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+  export const RoutesChangeScalarFieldEnum: {
+    id: 'id',
+    wasRoute: 'wasRoute',
+    toRoute: 'toRoute',
+    route_id: 'route_id',
+    user_id: 'user_id',
+    createdAt: 'createdAt'
+  };
+
+  export type RoutesChangeScalarFieldEnum = (typeof RoutesChangeScalarFieldEnum)[keyof typeof RoutesChangeScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3109,6 +4280,20 @@ export namespace Prisma {
   /**
    * Field references
    */
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
 
 
   /**
@@ -3140,16 +4325,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'DateTime'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'DateTime[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
   /**
    * Deep Input Types
@@ -3160,13 +4345,14 @@ export namespace Prisma {
     AND?: RoutesWhereInput | RoutesWhereInput[]
     OR?: RoutesWhereInput[]
     NOT?: RoutesWhereInput | RoutesWhereInput[]
-    id?: StringFilter<"Routes"> | string
+    id?: IntFilter<"Routes"> | number
     VEICULO?: StringFilter<"Routes"> | string
     FILDOC?: StringFilter<"Routes"> | string
     DOC?: StringFilter<"Routes"> | string
     SERIE?: StringFilter<"Routes"> | string
     LAT?: FloatFilter<"Routes"> | number
     LNG?: FloatFilter<"Routes"> | number
+    ENDERECO?: StringFilter<"Routes"> | string
   }
 
   export type RoutesOrderByWithRelationInput = {
@@ -3177,10 +4363,11 @@ export namespace Prisma {
     SERIE?: SortOrder
     LAT?: SortOrder
     LNG?: SortOrder
+    ENDERECO?: SortOrder
   }
 
   export type RoutesWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: RoutesWhereInput | RoutesWhereInput[]
     OR?: RoutesWhereInput[]
     NOT?: RoutesWhereInput | RoutesWhereInput[]
@@ -3190,6 +4377,7 @@ export namespace Prisma {
     SERIE?: StringFilter<"Routes"> | string
     LAT?: FloatFilter<"Routes"> | number
     LNG?: FloatFilter<"Routes"> | number
+    ENDERECO?: StringFilter<"Routes"> | string
   }, "id">
 
   export type RoutesOrderByWithAggregationInput = {
@@ -3200,6 +4388,7 @@ export namespace Prisma {
     SERIE?: SortOrder
     LAT?: SortOrder
     LNG?: SortOrder
+    ENDERECO?: SortOrder
     _count?: RoutesCountOrderByAggregateInput
     _avg?: RoutesAvgOrderByAggregateInput
     _max?: RoutesMaxOrderByAggregateInput
@@ -3211,20 +4400,21 @@ export namespace Prisma {
     AND?: RoutesScalarWhereWithAggregatesInput | RoutesScalarWhereWithAggregatesInput[]
     OR?: RoutesScalarWhereWithAggregatesInput[]
     NOT?: RoutesScalarWhereWithAggregatesInput | RoutesScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Routes"> | string
+    id?: IntWithAggregatesFilter<"Routes"> | number
     VEICULO?: StringWithAggregatesFilter<"Routes"> | string
     FILDOC?: StringWithAggregatesFilter<"Routes"> | string
     DOC?: StringWithAggregatesFilter<"Routes"> | string
     SERIE?: StringWithAggregatesFilter<"Routes"> | string
     LAT?: FloatWithAggregatesFilter<"Routes"> | number
     LNG?: FloatWithAggregatesFilter<"Routes"> | number
+    ENDERECO?: StringWithAggregatesFilter<"Routes"> | string
   }
 
   export type UsersWhereInput = {
     AND?: UsersWhereInput | UsersWhereInput[]
     OR?: UsersWhereInput[]
     NOT?: UsersWhereInput | UsersWhereInput[]
-    id?: StringFilter<"Users"> | string
+    id?: IntFilter<"Users"> | number
     name?: StringFilter<"Users"> | string
     filial?: StringFilter<"Users"> | string
     latFilial?: FloatFilter<"Users"> | number
@@ -3240,7 +4430,7 @@ export namespace Prisma {
   }
 
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     AND?: UsersWhereInput | UsersWhereInput[]
     OR?: UsersWhereInput[]
     NOT?: UsersWhereInput | UsersWhereInput[]
@@ -3267,85 +4457,151 @@ export namespace Prisma {
     AND?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[]
     OR?: UsersScalarWhereWithAggregatesInput[]
     NOT?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Users"> | string
+    id?: IntWithAggregatesFilter<"Users"> | number
     name?: StringWithAggregatesFilter<"Users"> | string
     filial?: StringWithAggregatesFilter<"Users"> | string
     latFilial?: FloatWithAggregatesFilter<"Users"> | number
     lngFilial?: FloatWithAggregatesFilter<"Users"> | number
   }
 
+  export type RoutesChangeWhereInput = {
+    AND?: RoutesChangeWhereInput | RoutesChangeWhereInput[]
+    OR?: RoutesChangeWhereInput[]
+    NOT?: RoutesChangeWhereInput | RoutesChangeWhereInput[]
+    id?: IntFilter<"RoutesChange"> | number
+    wasRoute?: StringFilter<"RoutesChange"> | string
+    toRoute?: StringFilter<"RoutesChange"> | string
+    route_id?: StringFilter<"RoutesChange"> | string
+    user_id?: IntFilter<"RoutesChange"> | number
+    createdAt?: DateTimeFilter<"RoutesChange"> | Date | string
+  }
+
+  export type RoutesChangeOrderByWithRelationInput = {
+    id?: SortOrder
+    wasRoute?: SortOrder
+    toRoute?: SortOrder
+    route_id?: SortOrder
+    user_id?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RoutesChangeWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: RoutesChangeWhereInput | RoutesChangeWhereInput[]
+    OR?: RoutesChangeWhereInput[]
+    NOT?: RoutesChangeWhereInput | RoutesChangeWhereInput[]
+    wasRoute?: StringFilter<"RoutesChange"> | string
+    toRoute?: StringFilter<"RoutesChange"> | string
+    route_id?: StringFilter<"RoutesChange"> | string
+    user_id?: IntFilter<"RoutesChange"> | number
+    createdAt?: DateTimeFilter<"RoutesChange"> | Date | string
+  }, "id">
+
+  export type RoutesChangeOrderByWithAggregationInput = {
+    id?: SortOrder
+    wasRoute?: SortOrder
+    toRoute?: SortOrder
+    route_id?: SortOrder
+    user_id?: SortOrder
+    createdAt?: SortOrder
+    _count?: RoutesChangeCountOrderByAggregateInput
+    _avg?: RoutesChangeAvgOrderByAggregateInput
+    _max?: RoutesChangeMaxOrderByAggregateInput
+    _min?: RoutesChangeMinOrderByAggregateInput
+    _sum?: RoutesChangeSumOrderByAggregateInput
+  }
+
+  export type RoutesChangeScalarWhereWithAggregatesInput = {
+    AND?: RoutesChangeScalarWhereWithAggregatesInput | RoutesChangeScalarWhereWithAggregatesInput[]
+    OR?: RoutesChangeScalarWhereWithAggregatesInput[]
+    NOT?: RoutesChangeScalarWhereWithAggregatesInput | RoutesChangeScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"RoutesChange"> | number
+    wasRoute?: StringWithAggregatesFilter<"RoutesChange"> | string
+    toRoute?: StringWithAggregatesFilter<"RoutesChange"> | string
+    route_id?: StringWithAggregatesFilter<"RoutesChange"> | string
+    user_id?: IntWithAggregatesFilter<"RoutesChange"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"RoutesChange"> | Date | string
+  }
+
   export type RoutesCreateInput = {
-    id?: string
+    id: number
     VEICULO: string
     FILDOC: string
     DOC: string
     SERIE: string
     LAT: number
     LNG: number
+    ENDERECO: string
   }
 
   export type RoutesUncheckedCreateInput = {
-    id?: string
+    id: number
     VEICULO: string
     FILDOC: string
     DOC: string
     SERIE: string
     LAT: number
     LNG: number
+    ENDERECO: string
   }
 
   export type RoutesUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     VEICULO?: StringFieldUpdateOperationsInput | string
     FILDOC?: StringFieldUpdateOperationsInput | string
     DOC?: StringFieldUpdateOperationsInput | string
     SERIE?: StringFieldUpdateOperationsInput | string
     LAT?: FloatFieldUpdateOperationsInput | number
     LNG?: FloatFieldUpdateOperationsInput | number
+    ENDERECO?: StringFieldUpdateOperationsInput | string
   }
 
   export type RoutesUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     VEICULO?: StringFieldUpdateOperationsInput | string
     FILDOC?: StringFieldUpdateOperationsInput | string
     DOC?: StringFieldUpdateOperationsInput | string
     SERIE?: StringFieldUpdateOperationsInput | string
     LAT?: FloatFieldUpdateOperationsInput | number
     LNG?: FloatFieldUpdateOperationsInput | number
+    ENDERECO?: StringFieldUpdateOperationsInput | string
   }
 
   export type RoutesCreateManyInput = {
-    id?: string
+    id: number
     VEICULO: string
     FILDOC: string
     DOC: string
     SERIE: string
     LAT: number
     LNG: number
+    ENDERECO: string
   }
 
   export type RoutesUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     VEICULO?: StringFieldUpdateOperationsInput | string
     FILDOC?: StringFieldUpdateOperationsInput | string
     DOC?: StringFieldUpdateOperationsInput | string
     SERIE?: StringFieldUpdateOperationsInput | string
     LAT?: FloatFieldUpdateOperationsInput | number
     LNG?: FloatFieldUpdateOperationsInput | number
+    ENDERECO?: StringFieldUpdateOperationsInput | string
   }
 
   export type RoutesUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     VEICULO?: StringFieldUpdateOperationsInput | string
     FILDOC?: StringFieldUpdateOperationsInput | string
     DOC?: StringFieldUpdateOperationsInput | string
     SERIE?: StringFieldUpdateOperationsInput | string
     LAT?: FloatFieldUpdateOperationsInput | number
     LNG?: FloatFieldUpdateOperationsInput | number
+    ENDERECO?: StringFieldUpdateOperationsInput | string
   }
 
   export type UsersCreateInput = {
-    id?: string
+    id: number
     name: string
     filial: string
     latFilial: number
@@ -3353,7 +4609,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedCreateInput = {
-    id?: string
+    id: number
     name: string
     filial: string
     latFilial: number
@@ -3361,7 +4617,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     filial?: StringFieldUpdateOperationsInput | string
     latFilial?: FloatFieldUpdateOperationsInput | number
@@ -3369,7 +4625,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     filial?: StringFieldUpdateOperationsInput | string
     latFilial?: FloatFieldUpdateOperationsInput | number
@@ -3377,7 +4633,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateManyInput = {
-    id?: string
+    id: number
     name: string
     filial: string
     latFilial: number
@@ -3385,7 +4641,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     filial?: StringFieldUpdateOperationsInput | string
     latFilial?: FloatFieldUpdateOperationsInput | number
@@ -3393,11 +4649,85 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     filial?: StringFieldUpdateOperationsInput | string
     latFilial?: FloatFieldUpdateOperationsInput | number
     lngFilial?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type RoutesChangeCreateInput = {
+    id: number
+    wasRoute: string
+    toRoute: string
+    route_id: string
+    user_id: number
+    createdAt?: Date | string
+  }
+
+  export type RoutesChangeUncheckedCreateInput = {
+    id: number
+    wasRoute: string
+    toRoute: string
+    route_id: string
+    user_id: number
+    createdAt?: Date | string
+  }
+
+  export type RoutesChangeUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    wasRoute?: StringFieldUpdateOperationsInput | string
+    toRoute?: StringFieldUpdateOperationsInput | string
+    route_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutesChangeUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    wasRoute?: StringFieldUpdateOperationsInput | string
+    toRoute?: StringFieldUpdateOperationsInput | string
+    route_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutesChangeCreateManyInput = {
+    id: number
+    wasRoute: string
+    toRoute: string
+    route_id: string
+    user_id: number
+    createdAt?: Date | string
+  }
+
+  export type RoutesChangeUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    wasRoute?: StringFieldUpdateOperationsInput | string
+    toRoute?: StringFieldUpdateOperationsInput | string
+    route_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutesChangeUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    wasRoute?: StringFieldUpdateOperationsInput | string
+    toRoute?: StringFieldUpdateOperationsInput | string
+    route_id?: StringFieldUpdateOperationsInput | string
+    user_id?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3434,9 +4764,11 @@ export namespace Prisma {
     SERIE?: SortOrder
     LAT?: SortOrder
     LNG?: SortOrder
+    ENDERECO?: SortOrder
   }
 
   export type RoutesAvgOrderByAggregateInput = {
+    id?: SortOrder
     LAT?: SortOrder
     LNG?: SortOrder
   }
@@ -3449,6 +4781,7 @@ export namespace Prisma {
     SERIE?: SortOrder
     LAT?: SortOrder
     LNG?: SortOrder
+    ENDERECO?: SortOrder
   }
 
   export type RoutesMinOrderByAggregateInput = {
@@ -3459,11 +4792,29 @@ export namespace Prisma {
     SERIE?: SortOrder
     LAT?: SortOrder
     LNG?: SortOrder
+    ENDERECO?: SortOrder
   }
 
   export type RoutesSumOrderByAggregateInput = {
+    id?: SortOrder
     LAT?: SortOrder
     LNG?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -3509,6 +4860,7 @@ export namespace Prisma {
   }
 
   export type UsersAvgOrderByAggregateInput = {
+    id?: SortOrder
     latFilial?: SortOrder
     lngFilial?: SortOrder
   }
@@ -3530,8 +4882,79 @@ export namespace Prisma {
   }
 
   export type UsersSumOrderByAggregateInput = {
+    id?: SortOrder
     latFilial?: SortOrder
     lngFilial?: SortOrder
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type RoutesChangeCountOrderByAggregateInput = {
+    id?: SortOrder
+    wasRoute?: SortOrder
+    toRoute?: SortOrder
+    route_id?: SortOrder
+    user_id?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RoutesChangeAvgOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type RoutesChangeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    wasRoute?: SortOrder
+    toRoute?: SortOrder
+    route_id?: SortOrder
+    user_id?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RoutesChangeMinOrderByAggregateInput = {
+    id?: SortOrder
+    wasRoute?: SortOrder
+    toRoute?: SortOrder
+    route_id?: SortOrder
+    user_id?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RoutesChangeSumOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3544,6 +4967,21 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3571,6 +5009,22 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3588,17 +5042,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -3613,6 +5056,31 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
 

@@ -127,7 +127,8 @@ exports.Prisma.RoutesScalarFieldEnum = {
   DOC: 'DOC',
   SERIE: 'SERIE',
   LAT: 'LAT',
-  LNG: 'LNG'
+  LNG: 'LNG',
+  ENDERECO: 'ENDERECO'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
@@ -136,6 +137,15 @@ exports.Prisma.UsersScalarFieldEnum = {
   filial: 'filial',
   latFilial: 'latFilial',
   lngFilial: 'lngFilial'
+};
+
+exports.Prisma.RoutesChangeScalarFieldEnum = {
+  id: 'id',
+  wasRoute: 'wasRoute',
+  toRoute: 'toRoute',
+  route_id: 'route_id',
+  user_id: 'user_id',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -151,7 +161,8 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   Routes: 'Routes',
-  Users: 'Users'
+  Users: 'Users',
+  RoutesChange: 'RoutesChange'
 };
 
 /**

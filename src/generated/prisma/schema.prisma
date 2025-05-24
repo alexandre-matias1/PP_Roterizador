@@ -15,23 +15,33 @@ datasource db {
 }
 
 model Routes {
-  id      String @id @default(uuid())
-  VEICULO String
-  FILDOC  String
-  DOC     String
-  SERIE   String
-  LAT     Float
-  LNG     Float
+  id       Int    @id
+  VEICULO  String
+  FILDOC   String
+  DOC      String
+  SERIE    String
+  LAT      Float
+  LNG      Float
+  ENDERECO String
 
   @@map("routes")
 }
 
 model Users {
-  id        String @id @default(uuid())
+  id        Int    @id
   name      String
   filial    String
   latFilial Float
   lngFilial Float
 
   @@map("users")
+}
+
+model RoutesChange {
+  id        Int      @id
+  wasRoute  String
+  toRoute   String
+  route_id  String
+  user_id   Int
+  createdAt DateTime @default(now()) @map("created_at")
 }

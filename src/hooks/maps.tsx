@@ -18,13 +18,11 @@ export function useMaps({ center, zoom = 14, mapId }: UseGoogleMapProps) {
 
   useEffect(() => {
     if (mapRef.current && !map && window.google?.maps) {
-      console.log(mapRef.current, map, window.google.maps)
       const mapInstance = new window.google.maps.Map(mapRef.current, {
         center:filialLatLng,
         zoom,
         mapId,
       });
-      console.log('SetMap')
       setMap(mapInstance);
     }
   }, [zoom, map, mapId, center]);
