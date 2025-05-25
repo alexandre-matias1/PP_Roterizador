@@ -12,6 +12,7 @@ interface RouteLatLngProps {
   lng: number;
   id: number;
   address: string;
+  color: string;
 }
 
 

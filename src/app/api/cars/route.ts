@@ -12,8 +12,10 @@ export async function GET() {
         LAT: true,
         LNG: true,
         ENDERECO: true,
+        rgb: true
       },
     });
+
 
     const unionLatLngInTheCar = allCars.reduce((acc, item) => {
       const key = item.VEICULO.toString();
@@ -26,19 +28,21 @@ export async function GET() {
         LNG: item.LNG,
         id: item.id,
         address: item.ENDERECO,
+        rgb: item.rgb
       });
       return acc;
-    }, {} as Record<string, { LAT: number; LNG: number; id: number; address: string }[]>);
+    }, {} as Record<string, { LAT: number; LNG: number; id: number; address: string; rgb: string }[]>);
 
     const result = Object.entries(unionLatLngInTheCar).map(
       ([carId, routes]) => ({
         car: parseInt(carId),
-        color: getRandomColor(),
+        color: routes[0].rgb,
         routes: routes.map((route) => ({
           lat: route.LAT,
           lng: route.LNG,
           id: route.id,
           address: route.address,
+          rgb: route.rgb
         })),
       })
     );

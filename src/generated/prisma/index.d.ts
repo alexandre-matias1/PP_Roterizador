@@ -1084,6 +1084,7 @@ export namespace Prisma {
     LAT: number | null
     LNG: number | null
     ENDERECO: string | null
+    rgb: string | null
   }
 
   export type RoutesMaxAggregateOutputType = {
@@ -1095,6 +1096,7 @@ export namespace Prisma {
     LAT: number | null
     LNG: number | null
     ENDERECO: string | null
+    rgb: string | null
   }
 
   export type RoutesCountAggregateOutputType = {
@@ -1106,6 +1108,7 @@ export namespace Prisma {
     LAT: number
     LNG: number
     ENDERECO: number
+    rgb: number
     _all: number
   }
 
@@ -1131,6 +1134,7 @@ export namespace Prisma {
     LAT?: true
     LNG?: true
     ENDERECO?: true
+    rgb?: true
   }
 
   export type RoutesMaxAggregateInputType = {
@@ -1142,6 +1146,7 @@ export namespace Prisma {
     LAT?: true
     LNG?: true
     ENDERECO?: true
+    rgb?: true
   }
 
   export type RoutesCountAggregateInputType = {
@@ -1153,6 +1158,7 @@ export namespace Prisma {
     LAT?: true
     LNG?: true
     ENDERECO?: true
+    rgb?: true
     _all?: true
   }
 
@@ -1251,6 +1257,7 @@ export namespace Prisma {
     LAT: number
     LNG: number
     ENDERECO: string
+    rgb: string
     _count: RoutesCountAggregateOutputType | null
     _avg: RoutesAvgAggregateOutputType | null
     _sum: RoutesSumAggregateOutputType | null
@@ -1281,6 +1288,7 @@ export namespace Prisma {
     LAT?: boolean
     LNG?: boolean
     ENDERECO?: boolean
+    rgb?: boolean
   }, ExtArgs["result"]["routes"]>
 
   export type RoutesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1292,6 +1300,7 @@ export namespace Prisma {
     LAT?: boolean
     LNG?: boolean
     ENDERECO?: boolean
+    rgb?: boolean
   }, ExtArgs["result"]["routes"]>
 
   export type RoutesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1303,6 +1312,7 @@ export namespace Prisma {
     LAT?: boolean
     LNG?: boolean
     ENDERECO?: boolean
+    rgb?: boolean
   }, ExtArgs["result"]["routes"]>
 
   export type RoutesSelectScalar = {
@@ -1314,9 +1324,10 @@ export namespace Prisma {
     LAT?: boolean
     LNG?: boolean
     ENDERECO?: boolean
+    rgb?: boolean
   }
 
-  export type RoutesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "VEICULO" | "FILDOC" | "DOC" | "SERIE" | "LAT" | "LNG" | "ENDERECO", ExtArgs["result"]["routes"]>
+  export type RoutesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "VEICULO" | "FILDOC" | "DOC" | "SERIE" | "LAT" | "LNG" | "ENDERECO" | "rgb", ExtArgs["result"]["routes"]>
 
   export type $RoutesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Routes"
@@ -1330,6 +1341,7 @@ export namespace Prisma {
       LAT: number
       LNG: number
       ENDERECO: string
+      rgb: string
     }, ExtArgs["result"]["routes"]>
     composites: {}
   }
@@ -1761,6 +1773,7 @@ export namespace Prisma {
     readonly LAT: FieldRef<"Routes", 'Float'>
     readonly LNG: FieldRef<"Routes", 'Float'>
     readonly ENDERECO: FieldRef<"Routes", 'String'>
+    readonly rgb: FieldRef<"Routes", 'String'>
   }
     
 
@@ -4232,7 +4245,8 @@ export namespace Prisma {
     SERIE: 'SERIE',
     LAT: 'LAT',
     LNG: 'LNG',
-    ENDERECO: 'ENDERECO'
+    ENDERECO: 'ENDERECO',
+    rgb: 'rgb'
   };
 
   export type RoutesScalarFieldEnum = (typeof RoutesScalarFieldEnum)[keyof typeof RoutesScalarFieldEnum]
@@ -4353,6 +4367,7 @@ export namespace Prisma {
     LAT?: FloatFilter<"Routes"> | number
     LNG?: FloatFilter<"Routes"> | number
     ENDERECO?: StringFilter<"Routes"> | string
+    rgb?: StringFilter<"Routes"> | string
   }
 
   export type RoutesOrderByWithRelationInput = {
@@ -4364,6 +4379,7 @@ export namespace Prisma {
     LAT?: SortOrder
     LNG?: SortOrder
     ENDERECO?: SortOrder
+    rgb?: SortOrder
   }
 
   export type RoutesWhereUniqueInput = Prisma.AtLeast<{
@@ -4378,6 +4394,7 @@ export namespace Prisma {
     LAT?: FloatFilter<"Routes"> | number
     LNG?: FloatFilter<"Routes"> | number
     ENDERECO?: StringFilter<"Routes"> | string
+    rgb?: StringFilter<"Routes"> | string
   }, "id">
 
   export type RoutesOrderByWithAggregationInput = {
@@ -4389,6 +4406,7 @@ export namespace Prisma {
     LAT?: SortOrder
     LNG?: SortOrder
     ENDERECO?: SortOrder
+    rgb?: SortOrder
     _count?: RoutesCountOrderByAggregateInput
     _avg?: RoutesAvgOrderByAggregateInput
     _max?: RoutesMaxOrderByAggregateInput
@@ -4408,6 +4426,7 @@ export namespace Prisma {
     LAT?: FloatWithAggregatesFilter<"Routes"> | number
     LNG?: FloatWithAggregatesFilter<"Routes"> | number
     ENDERECO?: StringWithAggregatesFilter<"Routes"> | string
+    rgb?: StringWithAggregatesFilter<"Routes"> | string
   }
 
   export type UsersWhereInput = {
@@ -4532,6 +4551,7 @@ export namespace Prisma {
     LAT: number
     LNG: number
     ENDERECO: string
+    rgb: string
   }
 
   export type RoutesUncheckedCreateInput = {
@@ -4543,6 +4563,7 @@ export namespace Prisma {
     LAT: number
     LNG: number
     ENDERECO: string
+    rgb: string
   }
 
   export type RoutesUpdateInput = {
@@ -4554,6 +4575,7 @@ export namespace Prisma {
     LAT?: FloatFieldUpdateOperationsInput | number
     LNG?: FloatFieldUpdateOperationsInput | number
     ENDERECO?: StringFieldUpdateOperationsInput | string
+    rgb?: StringFieldUpdateOperationsInput | string
   }
 
   export type RoutesUncheckedUpdateInput = {
@@ -4565,6 +4587,7 @@ export namespace Prisma {
     LAT?: FloatFieldUpdateOperationsInput | number
     LNG?: FloatFieldUpdateOperationsInput | number
     ENDERECO?: StringFieldUpdateOperationsInput | string
+    rgb?: StringFieldUpdateOperationsInput | string
   }
 
   export type RoutesCreateManyInput = {
@@ -4576,6 +4599,7 @@ export namespace Prisma {
     LAT: number
     LNG: number
     ENDERECO: string
+    rgb: string
   }
 
   export type RoutesUpdateManyMutationInput = {
@@ -4587,6 +4611,7 @@ export namespace Prisma {
     LAT?: FloatFieldUpdateOperationsInput | number
     LNG?: FloatFieldUpdateOperationsInput | number
     ENDERECO?: StringFieldUpdateOperationsInput | string
+    rgb?: StringFieldUpdateOperationsInput | string
   }
 
   export type RoutesUncheckedUpdateManyInput = {
@@ -4598,6 +4623,7 @@ export namespace Prisma {
     LAT?: FloatFieldUpdateOperationsInput | number
     LNG?: FloatFieldUpdateOperationsInput | number
     ENDERECO?: StringFieldUpdateOperationsInput | string
+    rgb?: StringFieldUpdateOperationsInput | string
   }
 
   export type UsersCreateInput = {
@@ -4762,6 +4788,7 @@ export namespace Prisma {
     LAT?: SortOrder
     LNG?: SortOrder
     ENDERECO?: SortOrder
+    rgb?: SortOrder
   }
 
   export type RoutesAvgOrderByAggregateInput = {
@@ -4779,6 +4806,7 @@ export namespace Prisma {
     LAT?: SortOrder
     LNG?: SortOrder
     ENDERECO?: SortOrder
+    rgb?: SortOrder
   }
 
   export type RoutesMinOrderByAggregateInput = {
@@ -4790,6 +4818,7 @@ export namespace Prisma {
     LAT?: SortOrder
     LNG?: SortOrder
     ENDERECO?: SortOrder
+    rgb?: SortOrder
   }
 
   export type RoutesSumOrderByAggregateInput = {

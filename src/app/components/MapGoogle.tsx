@@ -28,13 +28,13 @@ export function Map() {
     if (routes.length === 0 || !loadMaps || !map || !window.google.maps) {
       return;
     }
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0; i <= routes.length -1; i++) {
       const plotingMapFunc = () => {
         const directionsService = new window.google.maps.DirectionsService();
         const directionRenderer = new window.google.maps.DirectionsRenderer({
           polylineOptions: {
             strokeColor: routes[i].color,
-            strokeOpacity: 0.8,
+            strokeOpacity: 1,
             strokeWeight: 4,
           },
         });

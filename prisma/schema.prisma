@@ -23,6 +23,7 @@ model Routes {
   LAT      Float
   LNG      Float
   ENDERECO String
+  rgb      String
 
   @@map("routes")
 }

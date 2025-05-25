@@ -128,7 +128,8 @@ exports.Prisma.RoutesScalarFieldEnum = {
   SERIE: 'SERIE',
   LAT: 'LAT',
   LNG: 'LNG',
-  ENDERECO: 'ENDERECO'
+  ENDERECO: 'ENDERECO',
+  rgb: 'rgb'
 };
 
 exports.Prisma.UsersScalarFieldEnum = {
