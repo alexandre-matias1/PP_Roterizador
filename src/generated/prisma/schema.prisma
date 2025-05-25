@@ -38,7 +38,7 @@ model Users {
 }
 
 model RoutesChange {
-  id        Int      @id
+  id        Int      @id @default(autoincrement())
   wasRoute  String
   toRoute   String
   route_id  String

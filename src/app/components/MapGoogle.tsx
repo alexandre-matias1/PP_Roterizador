@@ -9,8 +9,6 @@ export function Map() {
   const {
     fetchData,
     routesData: routes,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setRoutes,
   } = useContext(RoutesContext);
   const [loadMaps, setLoadMaps] = useState(false);
   const { map, mapRef } = useMaps({
@@ -20,6 +18,8 @@ export function Map() {
     },
     zoom: 10,
   });
+
+
   useEffect(() => {
     fetchData();
   }, [fetchData]);
@@ -28,8 +28,7 @@ export function Map() {
     if (routes.length === 0 || !loadMaps || !map || !window.google.maps) {
       return;
     }
-    console.log(routes[0])
-    for (let i = 0; i <= 0; i++) {
+    for (let i = 0; i <= 1; i++) {
       const plotingMapFunc = () => {
         const directionsService = new window.google.maps.DirectionsService();
         const directionRenderer = new window.google.maps.DirectionsRenderer({

@@ -4657,7 +4657,6 @@ export namespace Prisma {
   }
 
   export type RoutesChangeCreateInput = {
-    id: number
     wasRoute: string
     toRoute: string
     route_id: string
@@ -4666,7 +4665,7 @@ export namespace Prisma {
   }
 
   export type RoutesChangeUncheckedCreateInput = {
-    id: number
+    id?: number
     wasRoute: string
     toRoute: string
     route_id: string
@@ -4675,7 +4674,6 @@ export namespace Prisma {
   }
 
   export type RoutesChangeUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
     wasRoute?: StringFieldUpdateOperationsInput | string
     toRoute?: StringFieldUpdateOperationsInput | string
     route_id?: StringFieldUpdateOperationsInput | string
@@ -4693,7 +4691,7 @@ export namespace Prisma {
   }
 
   export type RoutesChangeCreateManyInput = {
-    id: number
+    id?: number
     wasRoute: string
     toRoute: string
     route_id: string
@@ -4702,7 +4700,6 @@ export namespace Prisma {
   }
 
   export type RoutesChangeUpdateManyMutationInput = {
-    id?: IntFieldUpdateOperationsInput | number
     wasRoute?: StringFieldUpdateOperationsInput | string
     toRoute?: StringFieldUpdateOperationsInput | string
     route_id?: StringFieldUpdateOperationsInput | string

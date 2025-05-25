@@ -11,13 +11,15 @@ interface RouteLatLngProps {
   lat: number;
   lng: number;
   id: number;
+  address: string;
 }
 
 
-interface RouteProps{
+export interface RouteProps{
   car: number;
   color: string;
-  id: string;
+  id: number;
+  address: string
   routes: RouteLatLngProps[];
 }
 
