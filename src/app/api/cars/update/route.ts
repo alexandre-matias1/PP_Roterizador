@@ -10,11 +10,7 @@ export async function POST(req: NextRequest) {
     // newCar é pra onde vai a nova rota
     // oldCarId é a antiga rota
 
-    const route = await prisma.routes.findUnique({
-      where: { id },
-    });
 
-    console.log(route)
 
     await prisma.routes.update({
       where:{

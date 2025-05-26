@@ -1,16 +1,14 @@
 "use client";
 import { useMaps } from "@/hooks/maps";
 import Script from "next/script";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { RoutesContext } from "../context/data-context";
 //Popover
 
 export function Map() {
-  const {
-      routesData: routes,
-      fetchData
-  } = useContext(RoutesContext);
-  const [loadMaps, setLoadMaps] = useState(false);
+  const { routesData: routes } = useContext(RoutesContext);
+  const renderersRef = useRef<google.maps.DirectionsRenderer[]>([]);
+  const [ loadMaps, setLoadMaps ] = useState(false);
   const { map, mapRef } = useMaps({
     center: {
       lat: -19.959282,
@@ -20,12 +18,23 @@ export function Map() {
   });
 
 
+  const clearRoutes = () => {
+    renderersRef.current.forEach((renderer) => renderer.setMap(null));
+    renderersRef.current = [];
+  };
+
+  if (routes.length === 0){
+    clearRoutes()
+  }
   
   useEffect(() => {
     if (routes.length === 0 || !loadMaps || !map || !window.google.maps) {
       return;
     }
-    for (let i = 0; i <= routes.length -1; i++) {
+    
+    clearRoutes();
+    
+    for (let i = 0; i <= routes.length - 1; i++) {
       const plotingMapFunc = () => {
         const directionsService = new window.google.maps.DirectionsService();
         const directionRenderer = new window.google.maps.DirectionsRenderer({
@@ -35,7 +44,7 @@ export function Map() {
             strokeWeight: 4,
           },
         });
-        
+
         directionRenderer.setMap(map);
 
         directionsService.route(
@@ -51,13 +60,13 @@ export function Map() {
           (result, status) => {
             if (status === google.maps.DirectionsStatus.OK && result) {
               directionRenderer.setDirections(result);
-
-
+              renderersRef.current.push(directionRenderer);
             } else {
-              console.error("zero resultados")
+              console.error("zero resultados");
             }
           }
         );
+        return () => directionRenderer.setDirections(null);
       };
       plotingMapFunc();
     }

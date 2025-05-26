@@ -6,20 +6,16 @@ interface UseGoogleMapProps {
   mapId?: string;
 }
 
-const filialLatLng = {
-  lat: -19.959282,
-  lng: -44.031153
-}
 
 
-export function useMaps({ center, zoom = 14, mapId }: UseGoogleMapProps) {
+export function useMaps({ center, zoom, mapId }: UseGoogleMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
 
   useEffect(() => {
     if (mapRef.current && !map && window.google?.maps) {
       const mapInstance = new window.google.maps.Map(mapRef.current, {
-        center:filialLatLng,
+        center,
         zoom,
         mapId,
       });
