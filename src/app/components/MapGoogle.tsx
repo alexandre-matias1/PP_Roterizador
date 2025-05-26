@@ -7,8 +7,8 @@ import { RoutesContext } from "../context/data-context";
 
 export function Map() {
   const {
-    fetchData,
-    routesData: routes,
+      routesData: routes,
+      fetchData
   } = useContext(RoutesContext);
   const [loadMaps, setLoadMaps] = useState(false);
   const { map, mapRef } = useMaps({
@@ -20,9 +20,6 @@ export function Map() {
   });
 
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
   
   useEffect(() => {
     if (routes.length === 0 || !loadMaps || !map || !window.google.maps) {

@@ -10,7 +10,7 @@ export default function Page() {
       <div className="flex">
         <div className="w-200 h-svh bg-zinc-950 flex flex-col">
           <Header />
-          <div className="flex flex-col items-center mt-9 overflow-y-auto">
+          <div className="flex flex-col items-center mt-5 overflow-y-auto">
             <LeftSide />
           </div>
         </div>
