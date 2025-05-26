@@ -14,7 +14,7 @@ export function Map() {
       lat: -19.959282,
       lng: -44.031152,
     },
-    zoom: 10,
+    zoom: 14,
   });
 
 
