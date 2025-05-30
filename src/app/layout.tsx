@@ -1,6 +1,7 @@
 import { Poppins } from 'next/font/google';
 import { RoutesProvider } from "./context/data-context";
 import "./globals.css";
+import { Toaster } from 'sonner';
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -18,6 +19,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <body className={`antialiased`} suppressHydrationWarning>
         <RoutesProvider>{children}</RoutesProvider>
+        <Toaster richColors position='bottom-right'/>
       </body>
     </html>
   );
